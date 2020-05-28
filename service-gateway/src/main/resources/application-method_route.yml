@@ -1,0 +1,9 @@
+#只要HTTP的请求方法为指定的Method，则进入该route。
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: method_route
+          uri: http://localhost:8762
+          predicates:
+            - Method=GET # Method表示使用MethodRoutePredicateFactory

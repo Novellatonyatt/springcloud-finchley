@@ -1,0 +1,9 @@
+#只要请求中包含指定的参数，则进入该route
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: query_route
+          uri: http://localhost:8762
+          predicates:
+            - Query=name # 参数值可以使用正则表达式，也可以不指定参数值

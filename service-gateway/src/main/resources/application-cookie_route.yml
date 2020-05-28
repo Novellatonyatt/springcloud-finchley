@@ -1,0 +1,9 @@
+#只要请求中包含指定的Cookie，则进入该route
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: cookie_route
+          uri: http://localhost:8762
+          predicates:
+            - Cookie=service-hi-c,zht #cookie的value支持正则表达式

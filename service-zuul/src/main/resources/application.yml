@@ -1,0 +1,23 @@
+server:
+  port: 8767
+
+spring:
+  application:
+    name: service-zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8760/eureka/,http://peer2:8761/eureka/
+
+zuul:
+  routes:
+    service-ribbon:
+      path: /api-ribbon/**
+      serviceId: service-ribbon #http://host:port/**
+    service-feign:
+      path: /api-feign/**
+      serviceId: service-feign #http://host:port/**
+
+#以/api-ribbon开头的请求都转发到service-ribbon
+#以/api-feign开头的请求都转发到service-feign

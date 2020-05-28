@@ -1,0 +1,9 @@
+#只要请求头中包含指定的header，同时其值符合指定的要求，则进入该route
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: header_route
+          uri: http://localhost:8762
+          predicates:
+            - Header=X-Request-Id , * #Header表示使用HeaderRoutePredicateFactory，需要有两个参数，一个是header name，另一个是header value，支持正则表达式

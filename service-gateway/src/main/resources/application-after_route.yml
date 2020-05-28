@@ -1,0 +1,9 @@
+#只要请求的时间在指定的时间之后则进入该route。
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: after_route
+          uri: http://localhost:8762
+          predicates:
+            - After=2017-01-20T17:42:47.789-07:00[America/Denver]

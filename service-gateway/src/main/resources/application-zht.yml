@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api-ribbon
+          uri: lb://service-ribbon
+          predicates:
+            - Path=/api-ribbon/{segment}
+          filters:
+            - StripPrefix=1
+            - AddRequestHeader=X-Request-User-Id, xxx
+            - RequestTime=true
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@globalKeyResolver}'
+                redis-rate-limiter.replenishRate: 1 #每秒往令牌桶中放入多少个令牌
+                redis-rate-limiter.burstCapacity: 3 #令牌桶的容量
+            - name: Hystrix
+              args:
+                name: hy1
+                fallbackUri: forward:/fallback
+        - id: api-feign
+          uri: lb://service-feign
+          predicates:
+            - Path=/api-feign/{segment}
+          filters:
+            - StripPrefix=1
+            - AddRequestHeader=X-Request-User-Id, xxx
+            - name: Hystrix
+              args:
+                name: hy2
+                fallbackUri: forward:/fallback
+  redis:
+    host: localhost
+    port: 6379
+    database: 0

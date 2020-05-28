@@ -1,0 +1,26 @@
+server:
+  port: 8766
+
+spring:
+  application:
+    name: service-turbine
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8760/eureka/,http://peer2:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+
+turbine:
+  app-config: service-ribbon,service-feign
+  clusterNameExpression: new String("default")
+  aggregator:
+    clusterConfig: default

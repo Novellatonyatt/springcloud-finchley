@@ -1,0 +1,9 @@
+# 只要请求头中包含host属性，同时属性值满足指定的要求，则进入该route。
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: host_route
+          uri: http://localhost:8762
+          predicates:
+            - Host=**.zht.com # Host表示使用HostRoutePredicateFactory，需要有一个参数，指定host的值，可以使用.*去匹配。

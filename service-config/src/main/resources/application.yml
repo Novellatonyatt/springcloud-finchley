@@ -1,0 +1,18 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: service-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/forezp/SpringcloudConfig/
+          search-paths: respo
+          default-label: master
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8760/eureka/,http://peer2:8761/eureka/

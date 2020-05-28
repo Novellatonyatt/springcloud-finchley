@@ -1,0 +1,19 @@
+#应用端口
+server:
+  port: 8761
+
+#应用名称
+spring:
+  application:
+    name: eurka-server-peer2
+
+#eureka配置
+eureka:
+  instance:
+    hostname: peer2 #eureka instance的主机名
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl: #eureka的服务地址
+      defaultZone: http://peer1:8760/eureka/
+
