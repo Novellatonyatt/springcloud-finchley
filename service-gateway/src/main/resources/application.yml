@@ -9,8 +9,10 @@ eureka:
 spring:
   application:
     name: service-gateway
-  #  profiles:
-  #    active: zht
+  zipkin:
+    base-url: http://localhost:9411
+  profiles:
+      active: zht
   cloud:
     gateway:
       discovery:

@@ -11,10 +11,11 @@ spring:
     name: config-client
   cloud:
     config:
-      discovery: #自动从eureka发现service-config
+      discovery: #自动从eureka发现ConfigServer
         enabled: true
         serviceId: service-config
       profile: dev
+      name: application
       label: master
     bus:
       enabled: true
